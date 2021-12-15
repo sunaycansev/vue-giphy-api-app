@@ -1,6 +1,11 @@
 <template>
   <div class="search">
-    <input type="text" v-model="query" placeholder="Search" />
+    <input
+      type="text"
+      v-model="query"
+      placeholder="Search"
+      @keydown.enter="handleSearch"
+    />
     <button @click="handleSearch">Search</button>
   </div>
 </template>
@@ -15,7 +20,8 @@ export default {
   },
   methods: {
     handleSearch() {
-      console.log(this.query);
+      this.$emit("search-requested", this.query);
+      this.query = "";
     },
   },
 };
